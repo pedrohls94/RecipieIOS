@@ -16,6 +16,10 @@
 		8CD14CF727D6B09400758F6A /* recipieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CF627D6B09400758F6A /* recipieTests.swift */; };
 		8CD14D0127D6B09400758F6A /* recipieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14D0027D6B09400758F6A /* recipieUITests.swift */; };
 		8CD14D0327D6B09400758F6A /* recipieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14D0227D6B09400758F6A /* recipieUITestsLaunchTests.swift */; };
+		8CD14D1127D6B3D000758F6A /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14D1027D6B3D000758F6A /* RecipeController.swift */; };
+		8CD14D1327D6B3EC00758F6A /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14D1227D6B3EC00758F6A /* Recipe.swift */; };
+		8CD14D1627D6B52700758F6A /* EditRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14D1527D6B52700758F6A /* EditRecipeViewModel.swift */; };
+		8CD14D1827D6B5E400758F6A /* EditRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14D1727D6B5E400758F6A /* EditRecipeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		8CD14CFC27D6B09400758F6A /* recipieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = recipieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD14D0027D6B09400758F6A /* recipieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipieUITests.swift; sourceTree = "<group>"; };
 		8CD14D0227D6B09400758F6A /* recipieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipieUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8CD14D1027D6B3D000758F6A /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
+		8CD14D1227D6B3EC00758F6A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		8CD14D1527D6B52700758F6A /* EditRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipeViewModel.swift; sourceTree = "<group>"; };
+		8CD14D1727D6B5E400758F6A /* EditRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +112,9 @@
 				8CD14CE927D6B09400758F6A /* Persistence.swift */,
 				8CD14CEB27D6B09400758F6A /* recipie.xcdatamodeld */,
 				8CD14CE627D6B09400758F6A /* Preview Content */,
+				8CD14D1927D6B7AD00758F6A /* supporting files */,
+				8CD14D1427D6B4EB00758F6A /* view */,
+				8CD14D0F27D6B1F800758F6A /* model */,
 			);
 			path = recipie;
 			sourceTree = "<group>";
@@ -131,6 +142,31 @@
 				8CD14D0227D6B09400758F6A /* recipieUITestsLaunchTests.swift */,
 			);
 			path = recipieUITests;
+			sourceTree = "<group>";
+		};
+		8CD14D0F27D6B1F800758F6A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8CD14D1027D6B3D000758F6A /* RecipeController.swift */,
+				8CD14D1227D6B3EC00758F6A /* Recipe.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		8CD14D1427D6B4EB00758F6A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8CD14D1527D6B52700758F6A /* EditRecipeViewModel.swift */,
+				8CD14D1727D6B5E400758F6A /* EditRecipeView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8CD14D1927D6B7AD00758F6A /* supporting files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,9 +299,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD14D1827D6B5E400758F6A /* EditRecipeView.swift in Sources */,
 				8CD14CEA27D6B09400758F6A /* Persistence.swift in Sources */,
+				8CD14D1627D6B52700758F6A /* EditRecipeViewModel.swift in Sources */,
 				8CD14CED27D6B09400758F6A /* recipie.xcdatamodeld in Sources */,
 				8CD14CE327D6B09300758F6A /* ContentView.swift in Sources */,
+				8CD14D1327D6B3EC00758F6A /* Recipe.swift in Sources */,
+				8CD14D1127D6B3D000758F6A /* RecipeController.swift in Sources */,
 				8CD14CE127D6B09300758F6A /* recipieApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
