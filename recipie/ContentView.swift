@@ -6,17 +6,33 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
     var editRecipeView = EditRecipeView(EditRecipeViewModel(RecipeControllerImpl()))
     
     var body: some View {
         NavigationView {
+            
             List {
-                Text("hello")
-                Text("2")
+                HStack {
+                    Image("recipe1")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 70, height: 70)
+                        .clipped()
+                    Text("Köttbullar")
+                }
+                .frame(maxWidth: .infinity, maxHeight: 50)
+                HStack {
+                    Image("recipe2")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 70, height: 70)
+                        .clipped()
+                    Text("Kyckling")
+                }
             }
+            .listStyle(.plain)
             .toolbar {
                 ToolbarItem {
                     NavigationLink(destination: editRecipeView) {
@@ -24,6 +40,8 @@ struct ContentView: View {
                     }
                 }
             }
+            .navigationTitle("Recipie")
+            .navigationBarTitleDisplayMode(.automatic)
         }
     }
     

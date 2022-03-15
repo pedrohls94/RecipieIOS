@@ -17,8 +17,9 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     
     init(_ recipeController: RecipeController) {
         self.recipeController = recipeController
+        let scheduler = DispatchQueue.global()
         
-        $name.dropFirst(1).sink(receiveValue: save(name:)).store(in: &disposables)
+        $name.debounce(for: .seconds(0.5), scheduler: scheduler).dropFirst(1).sink(receiveValue: save(name:)).store(in: &disposables)
     }
     
     func save(name: String) {
