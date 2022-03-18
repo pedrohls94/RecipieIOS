@@ -23,6 +23,14 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     }
     
     func save(name: String) {
-        recipeController.registerNewRecipe(recipe: Recipe(name: name))
+        let recipe = Recipe(name: name)
+        recipeController.registerNewRecipe(recipe: recipe)
+        
+        let recipes = recipeController.fetchAllRecipes()
+        print("\(recipes.count) recipes in the db")
+        for item in recipes {
+            print("recipe name: \(item.name)")
+        }
+        
     }
 }

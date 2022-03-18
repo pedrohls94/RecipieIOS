@@ -83,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C8FFDEC27E28D7000455807 /* database */ = {
+			isa = PBXGroup;
+			children = (
+				8CD14CEB27D6B09400758F6A /* recipie.xcdatamodeld */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
 		8CD14CD427D6B09300758F6A = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +118,6 @@
 				8CD14CE227D6B09300758F6A /* ContentView.swift */,
 				8CD14CE427D6B09400758F6A /* Assets.xcassets */,
 				8CD14CE927D6B09400758F6A /* Persistence.swift */,
-				8CD14CEB27D6B09400758F6A /* recipie.xcdatamodeld */,
 				8CD14CE627D6B09400758F6A /* Preview Content */,
 				8CD14D1927D6B7AD00758F6A /* supporting files */,
 				8CD14D1427D6B4EB00758F6A /* view */,
@@ -147,6 +154,7 @@
 		8CD14D0F27D6B1F800758F6A /* model */ = {
 			isa = PBXGroup;
 			children = (
+				8C8FFDEC27E28D7000455807 /* database */,
 				8CD14D1027D6B3D000758F6A /* RecipeController.swift */,
 				8CD14D1227D6B3EC00758F6A /* Recipe.swift */,
 			);

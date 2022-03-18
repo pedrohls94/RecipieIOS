@@ -6,13 +6,29 @@
 //
 
 import Foundation
+import SwiftUI
+import CoreData
 
 protocol RecipeController {
     func registerNewRecipe(recipe: Recipe)
+    func fetchAllRecipes() -> [Recipe]
 }
 
 final class RecipeControllerImpl: RecipeController {
     func registerNewRecipe(recipe: Recipe) {
-        print("did register new recipe with name \(recipe.name)")
+        recipe.updateAndSave(context: PersistenceController.getContext())
+    }
+    
+    func fetchAllRecipes() -> [Recipe] {
+        let context = PersistenceController.getContext()
+        let fetchRequest = NSFetchRequest<RecipeMO>(entityName: "RecipeMO")
+        let result = try! context.fetch(fetchRequest)
+        
+        var recipes = [Recipe]()
+        for item in result {
+            recipes.append(Recipe(item))
+        }
+        
+        return recipes
     }
 }
