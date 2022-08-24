@@ -13,7 +13,7 @@ struct recipieApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RecipeListView(RecipeListViewModel(RecipeControllerImpl()))
         }
     }
 }

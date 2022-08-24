@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-final class Recipe {
+final class Recipe: Identifiable {
     var managedObject: RecipeMO?
     var name: String
     
