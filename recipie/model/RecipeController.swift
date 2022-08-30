@@ -27,13 +27,12 @@ final class RecipeControllerImpl: RecipeController {
         var recipes = [Recipe]()
         for item in result {
             var ingredients = [Ingredient]()
-            for ingredient in Array<IngredientMO>(_immutableCocoaArray: item.ingredients ?? NSSet()) {
-                ingredients.append(Ingredient(mo: ingredient))
+            for ingredient in Array(item.ingredients ?? NSSet()) {
+                ingredients.append(Ingredient(mo: ingredient as! IngredientMO))
             }
             recipes.append(Recipe(mo: item, ingredients: ingredients))
         }
         
         return recipes
     }
-
 }

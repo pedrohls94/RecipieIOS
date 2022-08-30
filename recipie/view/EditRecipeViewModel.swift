@@ -9,7 +9,12 @@ import SwiftUI
 import Combine
 
 class EditRecipeViewModel: ObservableObject, Identifiable {
-    @Published var name = ""
+    @Published var recipeName = ""
+    @Published var ingredients = [Ingredient]()
+    
+    @Published var ingredientName = ""
+    @Published var ingredientQuantity = ""
+    @Published var ingredientMeasurementUnit: MeasurementUnit = .units
     
     private var recipeController: RecipeController
     
@@ -17,7 +22,23 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         self.recipeController = recipeController
     }
     
-    func save(name: String) {
+    func addIngredient() {
+        if let quantity = Double(ingredientQuantity) {
+            let newIngredient = Ingredient(name: ingredientName, measurementUnit: ingredientMeasurementUnit, quantity: quantity)
+            ingredients.append(newIngredient)
+        }
         
+        resetIngredientFields()
+    }
+    
+    func resetIngredientFields() {
+        ingredientName = ""
+        ingredientQuantity = ""
+        ingredientMeasurementUnit = .units
+    }
+    
+    func save() {
+        let recipe = Recipe(name: recipeName, ingredients: ingredients)
+        recipeController.registerNewRecipe(recipe: recipe)
     }
 }
