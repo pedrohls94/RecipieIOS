@@ -35,7 +35,7 @@ final class Ingredient: Identifiable {
         }
         
         managedObject!.name = name
-        managedObject!.recipe = recipe.managedObject
+        managedObject!.recipe = recipe.managedObject!
         managedObject!.measurementUnit = Int32(measurementUnit.rawValue)
         managedObject!.quantity = quantity
         

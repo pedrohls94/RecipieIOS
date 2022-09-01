@@ -12,16 +12,19 @@ final class Recipe: Identifiable {
     var managedObject: RecipeMO?
     var name: String
     var ingredients: [Ingredient]
+    var instructions: [InstructionSet]
     
-    init(mo: RecipeMO, ingredients: [Ingredient]) {
+    init(mo: RecipeMO, ingredients: [Ingredient], instructions: [InstructionSet]) {
         managedObject = mo
         name = mo.name!
         self.ingredients = ingredients
+        self.instructions = instructions
     }
     
-    init(name: String, ingredients: [Ingredient]) {
+    init(name: String, ingredients: [Ingredient], instructions: [InstructionSet]) {
         self.name = name
         self.ingredients = ingredients
+        self.instructions = instructions
     }
     
     func updateAndSave(context: NSManagedObjectContext) {
@@ -30,7 +33,8 @@ final class Recipe: Identifiable {
         }
         
         managedObject!.name = name
-        managedObject!.ingredients = getIngredientsMOs(context: context) as NSSet
+        managedObject!.ingredients = getIngredientsMOs(context: context)
+        managedObject!.instructions = getInstructionSetsMOs(context: context)
         
         do {
             try context.save()
@@ -40,12 +44,21 @@ final class Recipe: Identifiable {
         }
     }
     
-    private func getIngredientsMOs(context: NSManagedObjectContext) -> Set<IngredientMO> {
+    private func getIngredientsMOs(context: NSManagedObjectContext) -> NSSet {
         var ingredientsMOs = Set<IngredientMO>()
         for ingredient in ingredients {
             ingredient.updateAndSave(inRecipe: self, context: context)
             ingredientsMOs.insert(ingredient.managedObject!)
         }
-        return ingredientsMOs
+        return ingredientsMOs as NSSet
+    }
+    
+    private func getInstructionSetsMOs(context: NSManagedObjectContext) -> NSSet {
+        var instructionSetsMOs = Set<InstructionSetMO>()
+        for instruction in instructions {
+            instruction.updateAndSave(inRecipe: self, context: context)
+            instructionSetsMOs.insert(instruction.managedObject!)
+        }
+        return instructionSetsMOs as NSSet
     }
 }

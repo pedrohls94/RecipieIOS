@@ -6,12 +6,26 @@
         <attribute name="quantity" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeMO" inverseName="ingredients" inverseEntity="RecipeMO"/>
     </entity>
+    <entity name="InstructionMO" representedClassName="InstructionMO" syncable="YES" codeGenerationType="class">
+        <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO"/>
+        <attribute name="text" attributeType="String"/>
+        <relationship name="set" maxCount="1" deletionRule="Nullify" destinationEntity="InstructionSetMO" inverseName="instructions" inverseEntity="InstructionSetMO"/>
+    </entity>
+    <entity name="InstructionSetMO" representedClassName="InstructionSetMO" syncable="YES" codeGenerationType="class">
+        <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="instructions" toMany="YES" deletionRule="Nullify" destinationEntity="InstructionMO" inverseName="set" inverseEntity="InstructionMO"/>
+        <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeMO" inverseName="instructions" inverseEntity="RecipeMO"/>
+    </entity>
     <entity name="RecipeMO" representedClassName="RecipeMO" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IngredientMO" inverseName="recipe" inverseEntity="IngredientMO"/>
+        <relationship name="instructions" toMany="YES" deletionRule="Nullify" destinationEntity="InstructionSetMO" inverseName="recipe" inverseEntity="InstructionSetMO"/>
     </entity>
     <elements>
-        <element name="RecipeMO" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="RecipeMO" positionX="-63" positionY="-18" width="128" height="74"/>
         <element name="IngredientMO" positionX="-45" positionY="18" width="128" height="89"/>
+        <element name="InstructionMO" positionX="-36" positionY="54" width="128" height="74"/>
+        <element name="InstructionSetMO" positionX="-27" positionY="63" width="128" height="89"/>
     </elements>
 </model>

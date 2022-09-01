@@ -38,7 +38,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     }
     
     func save() {
-        let recipe = Recipe(name: recipeName, ingredients: ingredients)
+        let recipe = Recipe(name: recipeName, ingredients: ingredients, instructions: [InstructionSet]())
         recipeController.registerNewRecipe(recipe: recipe)
     }
 }
