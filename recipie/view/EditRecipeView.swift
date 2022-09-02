@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EditRecipeView: View {
     @ObservedObject var viewModel: EditRecipeViewModel
+    
+    @Environment(\.presentationMode) var presentationMode
 
     init(_ viewModel: EditRecipeViewModel) {
         self.viewModel = viewModel
@@ -26,7 +28,13 @@ struct EditRecipeView: View {
                     Text("Save")
                 }
             }
-        }.padding([.leading, .trailing], 50)
+        }
+        .padding([.leading, .trailing], 50)
+        .onReceive(viewModel.$shouldDismiss) { shouldDismiss in
+            if shouldDismiss {
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
     }
 }
 

@@ -19,6 +19,8 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     
     @Published var instructionText = ""
     
+    @Published var shouldDismiss = false
+    
     private var recipeController: RecipeController
     
     init(_ recipeController: RecipeController) {
@@ -53,5 +55,6 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     func save() {
         let recipe = Recipe(name: recipeName, ingredients: ingredients, instructions: instructionSets)
         recipeController.registerNewRecipe(recipe: recipe)
+        shouldDismiss = true
     }
 }
