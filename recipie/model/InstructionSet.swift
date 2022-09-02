@@ -23,7 +23,7 @@ final class InstructionSet: Identifiable {
         self.instructions = instructions
     }
     
-    init(identifier: Int, name: String? = nil, instructions: [Instruction]) {
+    init(identifier: Int, name: String? = nil, instructions: [Instruction] = [Instruction]()) {
         self.identifier = identifier
         self.name = name
         self.instructions = instructions
