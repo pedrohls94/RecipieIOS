@@ -115,7 +115,10 @@ final class RecipeControllerImpl: RecipeController {
     
     func fetchAllRecipes() -> [Recipe] {
         let context = PersistenceController.getContext()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         let fetchRequest = NSFetchRequest<RecipeMO>(entityName: "RecipeMO")
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
         let result = try! context.fetch(fetchRequest)
         
         var recipes = [Recipe]()
