@@ -25,21 +25,4 @@ final class Instruction: Identifiable {
         self.order = order
         self.text = text
     }
-    
-    func updateAndSave(inInstructionSet instructionSet: InstructionSet, context: NSManagedObjectContext) {
-        if managedObject == nil {
-            managedObject = InstructionMO(context: context)
-        }
-        
-        managedObject!.set = instructionSet.managedObject!
-        managedObject!.order = order as NSNumber
-        managedObject!.text = text
-        
-        do {
-            try context.save()
-            print("Saved instruction")
-        } catch {
-            print("Error: \(error)")
-        }
-    }
 }

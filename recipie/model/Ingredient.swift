@@ -28,22 +28,4 @@ final class Ingredient: Identifiable {
         self.measurementUnit = measurementUnit
         self.quantity = quantity
     }
-    
-    func updateAndSave(inRecipe recipe: Recipe, context: NSManagedObjectContext) {
-        if managedObject == nil {
-            managedObject = IngredientMO(context: context)
-        }
-        
-        managedObject!.name = name
-        managedObject!.recipe = recipe.managedObject!
-        managedObject!.measurementUnit = Int32(measurementUnit.rawValue)
-        managedObject!.quantity = quantity
-        
-        do {
-            try context.save()
-            print("Saved ingredient with name \(name)")
-        } catch {
-            print("Error: \(error)")
-        }
-    }
 }
