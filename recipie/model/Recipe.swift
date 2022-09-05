@@ -10,9 +10,9 @@ import CoreData
 
 final class Recipe: Identifiable  {
     var managedObject: RecipeMO?
-    var name: String
-    var ingredients: [Ingredient]
-    var instructions: [InstructionSet]
+    var name: String?
+    var ingredients = [Ingredient]()
+    var instructions = [InstructionSet]()
     
     init(mo: RecipeMO, ingredients: [Ingredient], instructions: [InstructionSet]) {
         managedObject = mo
@@ -25,5 +25,9 @@ final class Recipe: Identifiable  {
         self.name = name
         self.ingredients = ingredients
         self.instructions = instructions
+    }
+    
+    init() {
+        
     }
 }

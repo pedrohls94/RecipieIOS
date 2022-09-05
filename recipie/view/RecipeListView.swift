@@ -28,14 +28,14 @@ struct RecipeListView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 70, height: 70)
                             .clipped()
-                        Text(recipe.name)
+                        Text(recipe.name ?? "No name recipe")
                     }
                 }
             }
             .listStyle(.plain)
             .toolbar {
                 ToolbarItem {
-                    NavigationLink(destination: editRecipeView) {
+                    NavigationLink(destination: getEditRecipeView()) {
                         Label("Add recipe", systemImage: "plus")
                     }
                 }
@@ -43,6 +43,10 @@ struct RecipeListView: View {
             .navigationTitle("Recipie")
             .navigationBarTitleDisplayMode(.automatic)
         }
+    }
+    
+    func getEditRecipeView() -> EditRecipeView {
+        return EditRecipeView(EditRecipeViewModel(RecipeControllerImpl()))
     }
 }
 

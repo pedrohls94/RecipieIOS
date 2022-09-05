@@ -9,9 +9,11 @@ import SwiftUI
 import Combine
 
 class EditRecipeViewModel: ObservableObject, Identifiable {
+    @Published var recipe: Recipe
+    
     @Published var recipeName = ""
-    @Published var ingredients = [Ingredient]()
-    @Published var instructionSets = [InstructionSet]()
+//    @Published var ingredients = [Ingredient]()
+//    @Published var instructionSets = [InstructionSet]()
     
     @Published var ingredientName = ""
     @Published var ingredientQuantity = ""
@@ -23,16 +25,17 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     
     private var recipeController: RecipeController
     
-    init(_ recipeController: RecipeController) {
+    init(_ recipeController: RecipeController, recipe: Recipe? = nil) {
         self.recipeController = recipeController
         
-        instructionSets.append(InstructionSet(identifier: 1, name: "Set 1"))
+        self.recipe = recipe ?? Recipe()
+        self.recipe.instructions.append(InstructionSet(identifier: 1, name: "Set 1"))
     }
     
     func addIngredient() {
         if let quantity = Double(ingredientQuantity) {
             let newIngredient = Ingredient(name: ingredientName, measurementUnit: ingredientMeasurementUnit, quantity: quantity)
-            ingredients.append(newIngredient)
+            recipe.ingredients.append(newIngredient)
         }
         
         resetIngredientFields()
@@ -45,7 +48,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     }
     
     func addInstruction() {
-        let currentSet = instructionSets.last!
+        let currentSet = recipe.instructions.last!
         let instruction = Instruction(order: currentSet.instructions.count, text: instructionText)
         currentSet.instructions.append(instruction)
         
@@ -53,7 +56,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     }
     
     func save() {
-        let recipe = Recipe(name: recipeName, ingredients: ingredients, instructions: instructionSets)
+        recipe.name = recipeName
         recipeController.saveRecipe(recipe)
         shouldDismiss = true
     }

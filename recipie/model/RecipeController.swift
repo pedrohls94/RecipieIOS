@@ -27,7 +27,7 @@ final class RecipeControllerImpl: RecipeController {
         
         do {
             try context.save()
-            print("Saved recipe with name \(recipe.name)")
+            print("Saved recipe with name \(recipe.name ?? "-")")
         } catch {
             print("Error: \(error)")
         }

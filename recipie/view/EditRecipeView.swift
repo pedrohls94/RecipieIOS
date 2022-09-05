@@ -49,7 +49,7 @@ struct EditRecipeIngredientsView: View {
         VStack {
             Text("Ingredients")
             VStack {
-                ForEach(viewModel.ingredients) { ingredient in
+                ForEach(viewModel.recipe.ingredients) { ingredient in
                     HStack {
                         Text(String(format: "%g", ingredient.quantity))
                         Text("\(ingredient.measurementUnit.toString())")
@@ -83,7 +83,7 @@ struct EditRecipeInstructionsView: View {
     var body: some View {
         VStack {
             Text("Sets of instructions")
-            ForEach(viewModel.instructionSets) { instructionSet in
+            ForEach(viewModel.recipe.instructions) { instructionSet in
                 Text(instructionSet.name ?? "Instructions")
                 ForEach(instructionSet.instructions) { instruction in
                     Text(instruction.text)
