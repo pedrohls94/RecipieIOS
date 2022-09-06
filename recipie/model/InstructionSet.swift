@@ -12,20 +12,20 @@ final class InstructionSet: Identifiable {
     var managedObject: InstructionSetMO?
     
     var identifier: Int
-    var name: String?
+    var name: String
     var instructions: [Instruction]
     
     init(mo: InstructionSetMO, instructions: [Instruction]) {
         managedObject = mo
         
         identifier = mo.identifier!.intValue
-        name = mo.name
+        name = mo.name!
         self.instructions = instructions
     }
     
     init(identifier: Int, name: String? = nil, instructions: [Instruction] = [Instruction]()) {
         self.identifier = identifier
-        self.name = name
+        self.name = name ?? "Instruction Set #\(identifier)"
         self.instructions = instructions
     }
 }

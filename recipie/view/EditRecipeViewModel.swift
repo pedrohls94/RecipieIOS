@@ -12,8 +12,6 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     @Published var recipe: Recipe
     
     @Published var recipeName = ""
-//    @Published var ingredients = [Ingredient]()
-//    @Published var instructionSets = [InstructionSet]()
     
     @Published var ingredientName = ""
     @Published var ingredientQuantity = ""
@@ -29,7 +27,13 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         self.recipeController = recipeController
         
         self.recipe = recipe ?? Recipe()
-        self.recipe.instructions.append(InstructionSet(identifier: 1, name: "Set 1"))
+        if let name = recipe?.name {
+            recipeName = name
+        }
+        
+        if self.recipe.instructions.count < 1 {
+            self.recipe.instructions.append(InstructionSet(identifier: 1))
+        }
     }
     
     func addIngredient() {

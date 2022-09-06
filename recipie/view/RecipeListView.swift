@@ -23,12 +23,14 @@ struct RecipeListView: View {
             List {
                 ForEach(self.viewModel.recipeList) { recipe in
                     HStack {
-                        Image("pie")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 70, height: 70)
-                            .clipped()
-                        Text(recipe.name ?? "No name recipe")
+                        NavigationLink(destination: getEditRecipeView(recipe)) {
+                            Image("pie")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 70, height: 70)
+                                .clipped()
+                            Text(recipe.name ?? "No name recipe")
+                        }
                     }
                 }
             }
@@ -45,8 +47,8 @@ struct RecipeListView: View {
         }
     }
     
-    func getEditRecipeView() -> EditRecipeView {
-        return EditRecipeView(EditRecipeViewModel(RecipeControllerImpl()))
+    func getEditRecipeView(_ recipe: Recipe? = nil) -> EditRecipeView {
+        return EditRecipeView(EditRecipeViewModel(RecipeControllerImpl(), recipe: recipe))
     }
 }
 

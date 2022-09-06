@@ -84,7 +84,7 @@ struct EditRecipeInstructionsView: View {
         VStack {
             Text("Sets of instructions")
             ForEach(viewModel.recipe.instructions) { instructionSet in
-                Text(instructionSet.name ?? "Instructions")
+                Text(instructionSet.name)
                 ForEach(instructionSet.instructions) { instruction in
                     Text(instruction.text)
                 }
