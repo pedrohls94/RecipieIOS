@@ -24,7 +24,7 @@ struct RecipeListView: View {
                 ForEach(self.viewModel.recipeList) { recipe in
                     HStack {
                         NavigationLink(destination: getEditRecipeView(recipe)) {
-                            Image("pie")
+                            recipe.image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 70, height: 70)

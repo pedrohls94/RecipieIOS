@@ -7,12 +7,17 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 final class Recipe: Identifiable  {
     var managedObject: RecipeMO?
     var name: String?
     var ingredients = [Ingredient]()
     var instructions = [InstructionSet]()
+    
+    var image: Image {
+        return Image("pie")
+    }
     
     init(mo: RecipeMO, ingredients: [Ingredient], instructions: [InstructionSet]) {
         managedObject = mo
