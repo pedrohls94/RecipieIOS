@@ -98,9 +98,7 @@ struct EditRecipeIngredientsView: View {
                 .font(.callout.weight(.bold))
             ForEach(viewModel.recipe.ingredients) { ingredient in
                 HStack {
-                    Text("-").foregroundColor(ColorPalette.darkText)
-                    Text(String(format: "%g", ingredient.quantity)).foregroundColor(ColorPalette.darkText)
-                    Text("\(ingredient.measurementUnit.toString())").foregroundColor(ColorPalette.darkText)
+                    Text("- \(String(format: "%g", ingredient.quantity)) \(ingredient.measurementUnit.toString())").foregroundColor(ColorPalette.darkText)
                     Text(ingredient.name).foregroundColor(ColorPalette.darkText)
                 }
             }
@@ -116,7 +114,7 @@ struct EditRecipeIngredientsView: View {
                         }
                     }.labelsHidden().pickerStyle(InlinePickerStyle())
                 } label: {
-                    Text(viewModel.ingredientMeasurementUnit.toString()).foregroundColor(ColorPalette.highlight)
+                    Text(MeasurementUnit(rawValue: viewModel.ingredientMeasurementUnit)!.toString()).foregroundColor(ColorPalette.highlight)
                 }
                 Rectangle().fill(ColorPalette.highlight).frame(width: 1, height: 15, alignment: .center)
                 Button(action: viewModel.addIngredient) {

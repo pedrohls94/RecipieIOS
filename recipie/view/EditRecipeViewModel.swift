@@ -15,7 +15,11 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     
     @Published var ingredientName = ""
     @Published var ingredientQuantity = ""
-    @Published var ingredientMeasurementUnit: MeasurementUnit = .units
+    @Published var ingredientMeasurementUnit: Int = 0 {
+        didSet {
+            print("did set \(ingredientMeasurementUnit)")
+        }
+    }
     
     @Published var instructionText = ""
     
@@ -38,7 +42,8 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     
     func addIngredient() {
         if let quantity = Double(ingredientQuantity) {
-            let newIngredient = Ingredient(name: ingredientName, measurementUnit: ingredientMeasurementUnit, quantity: quantity)
+            let unit = MeasurementUnit(rawValue: ingredientMeasurementUnit) ?? .units
+            let newIngredient = Ingredient(name: ingredientName, measurementUnit: unit, quantity: quantity)
             recipe.ingredients.append(newIngredient)
         }
         
@@ -48,7 +53,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     func resetIngredientFields() {
         ingredientName = ""
         ingredientQuantity = ""
-        ingredientMeasurementUnit = .units
+        ingredientMeasurementUnit = 0
     }
     
     func addInstruction() {
