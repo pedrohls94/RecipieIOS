@@ -69,7 +69,9 @@ struct EditRecipeDetailsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Recipe Name").foregroundColor(ColorPalette.darkText)
+            Text("Recipe Name")
+                .foregroundColor(ColorPalette.darkText)
+                .font(.callout.weight(.bold))
             TextField("Give a name to your recipe", text: $viewModel.recipeName)
                 .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                 .overlay(
@@ -90,7 +92,10 @@ struct EditRecipeIngredientsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Ingredients").foregroundColor(ColorPalette.darkText).padding(.bottom, 5)
+            Text("Ingredients")
+                .foregroundColor(ColorPalette.darkText)
+                .padding(.bottom, 5)
+                .font(.callout.weight(.bold))
             ForEach(viewModel.recipe.ingredients) { ingredient in
                 HStack {
                     Text("-").foregroundColor(ColorPalette.darkText)
@@ -138,7 +143,10 @@ struct EditRecipeInstructionsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Instructions").foregroundColor(ColorPalette.darkText).padding(.bottom, 5)
+            Text("Instructions")
+                .foregroundColor(ColorPalette.darkText)
+                .padding(.bottom, 5)
+                .font(.callout.weight(.bold))
             ForEach(viewModel.recipe.instructions) { instructionSet in
                 ForEach(instructionSet.instructions) { instruction in
                     HStack {

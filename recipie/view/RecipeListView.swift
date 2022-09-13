@@ -23,32 +23,48 @@ struct RecipeListView: View {
             List {
                 ForEach(self.viewModel.recipeList) { recipe in
                     HStack {
-                        NavigationLink(destination: getEditRecipeView(recipe)) {
-                            recipe.image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 70, height: 70)
-                                .clipped()
-                            Text(recipe.name ?? "No name recipe")
-                        }
+                        RecipeListRow(recipe)
                     }
                 }
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                .listRowBackground(ColorPalette.background)
             }
             .listStyle(.plain)
             .toolbar {
                 ToolbarItem {
-                    NavigationLink(destination: getEditRecipeView()) {
+                    NavigationLink(destination: Factory.getEditRecipeView()) {
                         Label("Add recipe", systemImage: "plus")
                     }
                 }
             }
+            .background(ColorPalette.background)
             .navigationTitle("Recipie")
-            .navigationBarTitleDisplayMode(.automatic)
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
+}
+
+struct RecipeListRow: View {
+    var recipe: Recipe
     
-    func getEditRecipeView(_ recipe: Recipe? = nil) -> EditRecipeView {
-        return EditRecipeView(EditRecipeViewModel(RecipeControllerImpl(), recipe: recipe))
+    init(_ recipe: Recipe) {
+        self.recipe = recipe
+    }
+    
+    var body: some View {
+        NavigationLink(destination: Factory.getEditRecipeView(recipe)) {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack(spacing: 15) {
+                    recipe.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 80)
+                        .clipped()
+                    Text(recipe.name ?? "No name recipe")
+                        .foregroundColor(ColorPalette.darkText)
+                }
+            }
+        }
     }
 }
 

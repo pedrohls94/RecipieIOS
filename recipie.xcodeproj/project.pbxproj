@@ -15,6 +15,7 @@
 		8C21367228BF3A5C00BA673F /* InstructionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367128BF3A5C00BA673F /* InstructionSet.swift */; };
 		8C21367528CA1EA900BA673F /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367428CA1EA900BA673F /* ColorExtension.swift */; };
 		8C21367828CF221300BA673F /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367728CF221300BA673F /* ColorPalette.swift */; };
+		8C21367B28CF451C00BA673F /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367A28CF451B00BA673F /* Factory.swift */; };
 		8CD14CE127D6B09300758F6A /* recipieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CE027D6B09300758F6A /* recipieApp.swift */; };
 		8CD14CE327D6B09300758F6A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CE227D6B09300758F6A /* ContentView.swift */; };
 		8CD14CE527D6B09400758F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD14CE427D6B09400758F6A /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		8C21367128BF3A5C00BA673F /* InstructionSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSet.swift; sourceTree = "<group>"; };
 		8C21367428CA1EA900BA673F /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		8C21367728CF221300BA673F /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		8C21367A28CF451B00BA673F /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		8CD14CDD27D6B09300758F6A /* recipie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = recipie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD14CE027D6B09300758F6A /* recipieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipieApp.swift; sourceTree = "<group>"; };
 		8CD14CE227D6B09300758F6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				8C21366D28B767AE00BA673F /* MeasurementUnit.swift */,
 				8C21366F28BF3A5300BA673F /* Instruction.swift */,
 				8C21367128BF3A5C00BA673F /* InstructionSet.swift */,
+				8C21367A28CF451B00BA673F /* Factory.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				8C21366628B0989200BA673F /* RecipeListView.swift in Sources */,
 				8C21367528CA1EA900BA673F /* ColorExtension.swift in Sources */,
 				8CD14D1127D6B3D000758F6A /* RecipeController.swift in Sources */,
+				8C21367B28CF451C00BA673F /* Factory.swift in Sources */,
 				8C21367828CF221300BA673F /* ColorPalette.swift in Sources */,
 				8C21367028BF3A5300BA673F /* Instruction.swift in Sources */,
 				8C21366828B0989C00BA673F /* RecipeListViewModel.swift in Sources */,
