@@ -23,7 +23,7 @@ struct RecipeListView: View {
             List {
                 ForEach(self.viewModel.recipeList) { recipe in
                     HStack {
-                        RecipeListRow(recipe)
+                        buildRecipeRow(recipe)
                     }
                 }
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
@@ -42,16 +42,8 @@ struct RecipeListView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
     }
-}
-
-struct RecipeListRow: View {
-    var recipe: Recipe
     
-    init(_ recipe: Recipe) {
-        self.recipe = recipe
-    }
-    
-    var body: some View {
+    func buildRecipeRow(_ recipe: Recipe) -> some View {
         NavigationLink(destination: Factory.getEditRecipeView(recipe)) {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 15) {

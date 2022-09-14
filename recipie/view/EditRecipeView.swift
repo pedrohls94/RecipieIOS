@@ -18,15 +18,11 @@ struct EditRecipeView: View {
     
     var body: some View {
         ScrollView {
-            EditRecipeImageView(viewModel)
-            EditRecipeDetailsView(viewModel)
-            EditRecipeIngredientsView(viewModel)
-            EditRecipeInstructionsView(viewModel)
-            VStack {
-                Button(action: viewModel.save) {
-                    Text("Save").foregroundColor(ColorPalette.highlight)
-                }
-            }.padding()
+            imageView
+            detailsView
+            ingredientsView
+            instructionsView
+            actionView
         }
         .background(ColorPalette.background)
         .navigationTitle("Edit Recipe")
@@ -38,16 +34,8 @@ struct EditRecipeView: View {
             }
         }
     }
-}
-
-struct EditRecipeImageView: View {
-    @ObservedObject var viewModel: EditRecipeViewModel
-
-    init(_ viewModel: EditRecipeViewModel) {
-        self.viewModel = viewModel
-    }
     
-    var body: some View {
+    var imageView: some View {
         VStack(spacing: 0) {
             Rectangle().fill(ColorPalette.highlight).frame(width: UIScreen.main.bounds.size.width, height: 2, alignment: .center)
             viewModel.recipe.image
@@ -58,16 +46,8 @@ struct EditRecipeImageView: View {
             Rectangle().fill(ColorPalette.highlight).frame(width: UIScreen.main.bounds.size.width, height: 2, alignment: .center)
         }
     }
-}
-
-struct EditRecipeDetailsView: View {
-    @ObservedObject var viewModel: EditRecipeViewModel
-
-    init(_ viewModel: EditRecipeViewModel) {
-        self.viewModel = viewModel
-    }
     
-    var body: some View {
+    var detailsView: some View {
         VStack(alignment: .leading) {
             Text("Recipe Name")
                 .foregroundColor(ColorPalette.darkText)
@@ -81,16 +61,8 @@ struct EditRecipeDetailsView: View {
         }
         .padding()
     }
-}
-
-struct EditRecipeIngredientsView: View {
-    @ObservedObject var viewModel: EditRecipeViewModel
-
-    init(_ viewModel: EditRecipeViewModel) {
-        self.viewModel = viewModel
-    }
     
-    var body: some View {
+    var ingredientsView: some View {
         VStack(alignment: .leading) {
             Text("Ingredients")
                 .foregroundColor(ColorPalette.darkText)
@@ -130,16 +102,8 @@ struct EditRecipeIngredientsView: View {
         }
         .padding()
     }
-}
-
-struct EditRecipeInstructionsView: View {
-    @ObservedObject var viewModel: EditRecipeViewModel
-
-    init(_ viewModel: EditRecipeViewModel) {
-        self.viewModel = viewModel
-    }
     
-    var body: some View {
+    var instructionsView: some View {
         VStack(alignment: .leading) {
             Text("Instructions")
                 .foregroundColor(ColorPalette.darkText)
@@ -168,5 +132,13 @@ struct EditRecipeInstructionsView: View {
             }
         }
         .padding()
+    }
+    
+    var actionView: some View {
+        VStack {
+            Button(action: viewModel.save) {
+                Text("Save").foregroundColor(ColorPalette.highlight)
+            }
+        }.padding()
     }
 }

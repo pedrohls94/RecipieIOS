@@ -16,8 +16,8 @@
 		8C21367528CA1EA900BA673F /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367428CA1EA900BA673F /* ColorExtension.swift */; };
 		8C21367828CF221300BA673F /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367728CF221300BA673F /* ColorPalette.swift */; };
 		8C21367B28CF451C00BA673F /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367A28CF451B00BA673F /* Factory.swift */; };
+		8C21367D28D0B40500BA673F /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367C28D0B40500BA673F /* RecipeView.swift */; };
 		8CD14CE127D6B09300758F6A /* recipieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CE027D6B09300758F6A /* recipieApp.swift */; };
-		8CD14CE327D6B09300758F6A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CE227D6B09300758F6A /* ContentView.swift */; };
 		8CD14CE527D6B09400758F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD14CE427D6B09400758F6A /* Assets.xcassets */; };
 		8CD14CE827D6B09400758F6A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD14CE727D6B09400758F6A /* Preview Assets.xcassets */; };
 		8CD14CEA27D6B09400758F6A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CE927D6B09400758F6A /* Persistence.swift */; };
@@ -58,9 +58,9 @@
 		8C21367428CA1EA900BA673F /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		8C21367728CF221300BA673F /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		8C21367A28CF451B00BA673F /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		8C21367C28D0B40500BA673F /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		8CD14CDD27D6B09300758F6A /* recipie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = recipie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD14CE027D6B09300758F6A /* recipieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipieApp.swift; sourceTree = "<group>"; };
-		8CD14CE227D6B09300758F6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8CD14CE427D6B09400758F6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CD14CE727D6B09400758F6A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8CD14CE927D6B09400758F6A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -121,6 +121,7 @@
 		8C8FFDEC27E28D7000455807 /* database */ = {
 			isa = PBXGroup;
 			children = (
+				8CD14CE927D6B09400758F6A /* Persistence.swift */,
 				8CD14CEB27D6B09400758F6A /* recipie.xcdatamodeld */,
 			);
 			path = database;
@@ -150,9 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				8CD14CE027D6B09300758F6A /* recipieApp.swift */,
-				8CD14CE227D6B09300758F6A /* ContentView.swift */,
 				8CD14CE427D6B09400758F6A /* Assets.xcassets */,
-				8CD14CE927D6B09400758F6A /* Persistence.swift */,
 				8CD14CE627D6B09400758F6A /* Preview Content */,
 				8CD14D1427D6B4EB00758F6A /* view */,
 				8CD14D0F27D6B1F800758F6A /* model */,
@@ -208,6 +207,7 @@
 				8CD14D1727D6B5E400758F6A /* EditRecipeView.swift */,
 				8C21366728B0989C00BA673F /* RecipeListViewModel.swift */,
 				8C21366528B0989200BA673F /* RecipeListView.swift */,
+				8C21367C28D0B40500BA673F /* RecipeView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -342,12 +342,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C21367D28D0B40500BA673F /* RecipeView.swift in Sources */,
 				8CD14D1827D6B5E400758F6A /* EditRecipeView.swift in Sources */,
 				8CD14CEA27D6B09400758F6A /* Persistence.swift in Sources */,
 				8C21366C28B7634C00BA673F /* Ingredient.swift in Sources */,
 				8CD14D1627D6B52700758F6A /* EditRecipeViewModel.swift in Sources */,
 				8CD14CED27D6B09400758F6A /* recipie.xcdatamodeld in Sources */,
-				8CD14CE327D6B09300758F6A /* ContentView.swift in Sources */,
 				8CD14D1327D6B3EC00758F6A /* Recipe.swift in Sources */,
 				8C21367228BF3A5C00BA673F /* InstructionSet.swift in Sources */,
 				8C21366628B0989200BA673F /* RecipeListView.swift in Sources */,
