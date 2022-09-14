@@ -27,7 +27,7 @@ struct RecipeListView: View {
                     }
                 }
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
-                .listRowBackground(ColorPalette.background)
+                .listRowBackground(Color.background)
             }
             .listStyle(.plain)
             .toolbar {
@@ -37,7 +37,7 @@ struct RecipeListView: View {
                     }
                 }
             }
-            .background(ColorPalette.background)
+            .background(Color.background)
             .navigationTitle("Recipie")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -53,7 +53,7 @@ struct RecipeListView: View {
                         .frame(width: 100, height: 80)
                         .clipped()
                     Text(recipe.name ?? "No name recipe")
-                        .foregroundColor(ColorPalette.darkText)
+                        .foregroundColor(Color.text)
                 }
             }
         }
