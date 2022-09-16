@@ -91,7 +91,6 @@ struct EditRecipeView: View {
                 Rectangle().fill(Color.highlight).frame(width: 1, height: 15, alignment: .center)
                 Button(action: viewModel.addIngredient) {
                     Text("add")
-                        .foregroundColor(Color.highlight)
                 }
             }
             .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
@@ -121,7 +120,6 @@ struct EditRecipeView: View {
                     Rectangle().fill(Color.highlight).frame(width: 1, height: 15, alignment: .center)
                     Button(action: viewModel.addInstruction) {
                         Text("add")
-                            .foregroundColor(Color.highlight)
                     }
                 }
                 .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
@@ -137,7 +135,7 @@ struct EditRecipeView: View {
     var actionView: some View {
         VStack {
             Button(action: viewModel.save) {
-                Text("Save").foregroundColor(Color.highlight)
+                Text("Save")
             }
         }.padding()
     }
