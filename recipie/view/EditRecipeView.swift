@@ -37,48 +37,41 @@ struct EditRecipeView: View {
     
     var imageView: some View {
         VStack(spacing: 0) {
-            Rectangle().fill(Color.highlight).frame(width: UIScreen.main.bounds.size.width, height: 2, alignment: .center)
+            horizontalBar
             viewModel.recipe.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: .center)
                 .clipped()
-            Rectangle().fill(Color.highlight).frame(width: UIScreen.main.bounds.size.width, height: 2, alignment: .center)
+            horizontalBar
         }
     }
     
     var detailsView: some View {
         VStack(alignment: .leading) {
             Text("Recipe Name")
-                .foregroundColor(Color.text)
-                .font(.callout.weight(.bold))
+                .modifier(SectionTitle())
+            
             TextField("Give a name to your recipe", text: $viewModel.recipeName)
-                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.highlight, lineWidth: 1)
-                )
-        }
-        .padding()
+                .modifier(BorderedHorizontalBox())
+        }.padding()
     }
     
     var ingredientsView: some View {
         VStack(alignment: .leading) {
             Text("Ingredients")
-                .foregroundColor(Color.text)
-                .padding(.bottom, 5)
-                .font(.callout.weight(.bold))
+                .modifier(SectionTitle())
+            
             ForEach(viewModel.recipe.ingredients) { ingredient in
-                HStack {
-                    Text("- \(String(format: "%g", ingredient.quantity)) \(ingredient.measurementUnit.toString())").foregroundColor(Color.text)
-                    Text(ingredient.name).foregroundColor(Color.text)
-                }
+                Text("- \(String(format: "%g", ingredient.quantity)) \(ingredient.measurementUnit.toString()) \(ingredient.name)")
+                    .foregroundColor(Color.text)
             }
+            
             HStack {
                 TextField("Name", text: $viewModel.ingredientName)
-                Rectangle().fill(Color.highlight).frame(width: 1, height: 15, alignment: .center)
+                verticalBar
                 TextField("Quantity", text: $viewModel.ingredientQuantity)
-                Rectangle().fill(Color.highlight).frame(width: 1, height: 15, alignment: .center)
+                verticalBar
                 Menu{
                     Picker("Measurement Unit", selection: $viewModel.ingredientMeasurementUnit) {
                         ForEach(MeasurementUnit.allCases, id: \.rawValue) { unit in
@@ -86,50 +79,36 @@ struct EditRecipeView: View {
                         }
                     }.labelsHidden().pickerStyle(InlinePickerStyle())
                 } label: {
-                    Text(MeasurementUnit(rawValue: viewModel.ingredientMeasurementUnit)!.toString()).foregroundColor(Color.highlight)
+                    Text(MeasurementUnit(rawValue: viewModel.ingredientMeasurementUnit)!.toString())
+                        .foregroundColor(Color.highlight)
                 }
-                Rectangle().fill(Color.highlight).frame(width: 1, height: 15, alignment: .center)
+                verticalBar
                 Button(action: viewModel.addIngredient) {
                     Text("add")
                 }
-            }
-            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.highlight, lineWidth: 1)
-            )
-        }
-        .padding()
+            }.modifier(BorderedHorizontalBox())
+        }.padding()
     }
     
     var instructionsView: some View {
         VStack(alignment: .leading) {
             Text("Instructions")
-                .foregroundColor(Color.text)
-                .padding(.bottom, 5)
-                .font(.callout.weight(.bold))
+                .modifier(SectionTitle())
+            
             ForEach(viewModel.recipe.instructions) { instructionSet in
                 ForEach(instructionSet.instructions) { instruction in
-                    HStack {
-                        Text("-").foregroundColor(Color.text)
-                        Text(instruction.text).foregroundColor(Color.text)
-                    }
+                    Text("- \(instruction.text)")
+                        .foregroundColor(Color.text)
                 }
                 HStack {
                     TextField("Description", text: $viewModel.instructionText)
-                    Rectangle().fill(Color.highlight).frame(width: 1, height: 15, alignment: .center)
+                    verticalBar
                     Button(action: viewModel.addInstruction) {
                         Text("add")
                     }
-                }
-                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.highlight, lineWidth: 1)
-                )
+                }.modifier(BorderedHorizontalBox())
             }
-        }
-        .padding()
+        }.padding()
     }
     
     var actionView: some View {
@@ -138,5 +117,13 @@ struct EditRecipeView: View {
                 Text("Save")
             }
         }.padding()
+    }
+    
+    var verticalBar: some View {
+        Rectangle().fill(Color.highlight).frame(width: 1, height: 15, alignment: .center)
+    }
+    
+    var horizontalBar: some View {
+        Rectangle().fill(Color.highlight).frame(width: UIScreen.main.bounds.size.width, height: 2, alignment: .center)
     }
 }
