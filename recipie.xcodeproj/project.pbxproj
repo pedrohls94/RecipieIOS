@@ -18,8 +18,10 @@
 		8C21367D28D0B40500BA673F /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21367C28D0B40500BA673F /* RecipeView.swift */; };
 		8C21367F28D1C87700BA673F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C21367E28D1C87700BA673F /* Colors.xcassets */; };
 		8C21368228D59AE300BA673F /* ViewPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C21368128D59AE300BA673F /* ViewPresets.swift */; };
+		8C2136842924CA3A00BA673F /* FileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2136832924CA3A00BA673F /* FileController.swift */; };
+		8C2136862927C6BC00BA673F /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2136852927C6BC00BA673F /* ImageHelper.swift */; };
 		8CD14CE127D6B09300758F6A /* recipieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CE027D6B09300758F6A /* recipieApp.swift */; };
-		8CD14CE527D6B09400758F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD14CE427D6B09400758F6A /* Assets.xcassets */; };
+		8CD14CE527D6B09400758F6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD14CE427D6B09400758F6A /* Images.xcassets */; };
 		8CD14CE827D6B09400758F6A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD14CE727D6B09400758F6A /* Preview Assets.xcassets */; };
 		8CD14CEA27D6B09400758F6A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CE927D6B09400758F6A /* Persistence.swift */; };
 		8CD14CED27D6B09400758F6A /* recipie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CD14CEB27D6B09400758F6A /* recipie.xcdatamodeld */; };
@@ -61,9 +63,11 @@
 		8C21367C28D0B40500BA673F /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		8C21367E28D1C87700BA673F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		8C21368128D59AE300BA673F /* ViewPresets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPresets.swift; sourceTree = "<group>"; };
+		8C2136832924CA3A00BA673F /* FileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileController.swift; sourceTree = "<group>"; };
+		8C2136852927C6BC00BA673F /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		8CD14CDD27D6B09300758F6A /* recipie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = recipie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD14CE027D6B09300758F6A /* recipieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipieApp.swift; sourceTree = "<group>"; };
-		8CD14CE427D6B09400758F6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8CD14CE427D6B09400758F6A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8CD14CE727D6B09400758F6A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8CD14CE927D6B09400758F6A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8CD14CEC27D6B09400758F6A /* recipie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = recipie.xcdatamodel; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				8C21367628CF220500BA673F /* extensions */,
+				8C2136832924CA3A00BA673F /* FileController.swift */,
+				8C2136852927C6BC00BA673F /* ImageHelper.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -161,7 +167,7 @@
 			children = (
 				8CD14CE027D6B09300758F6A /* recipieApp.swift */,
 				8C21367E28D1C87700BA673F /* Colors.xcassets */,
-				8CD14CE427D6B09400758F6A /* Assets.xcassets */,
+				8CD14CE427D6B09400758F6A /* Images.xcassets */,
 				8CD14CE627D6B09400758F6A /* Preview Content */,
 				8CD14D1427D6B4EB00758F6A /* view */,
 				8CD14D0F27D6B1F800758F6A /* model */,
@@ -329,7 +335,7 @@
 			files = (
 				8C21367F28D1C87700BA673F /* Colors.xcassets in Resources */,
 				8CD14CE827D6B09400758F6A /* Preview Assets.xcassets in Resources */,
-				8CD14CE527D6B09400758F6A /* Assets.xcassets in Resources */,
+				8CD14CE527D6B09400758F6A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +367,7 @@
 				8CD14D1627D6B52700758F6A /* EditRecipeViewModel.swift in Sources */,
 				8CD14CED27D6B09400758F6A /* recipie.xcdatamodeld in Sources */,
 				8CD14D1327D6B3EC00758F6A /* Recipe.swift in Sources */,
+				8C2136862927C6BC00BA673F /* ImageHelper.swift in Sources */,
 				8C21367228BF3A5C00BA673F /* InstructionSet.swift in Sources */,
 				8C21366628B0989200BA673F /* RecipeListView.swift in Sources */,
 				8C21367528CA1EA900BA673F /* ColorExtension.swift in Sources */,
@@ -369,6 +376,7 @@
 				8C21367028BF3A5300BA673F /* Instruction.swift in Sources */,
 				8C21368228D59AE300BA673F /* ViewPresets.swift in Sources */,
 				8C21366828B0989C00BA673F /* RecipeListViewModel.swift in Sources */,
+				8C2136842924CA3A00BA673F /* FileController.swift in Sources */,
 				8CD14CE127D6B09300758F6A /* recipieApp.swift in Sources */,
 				8C21366E28B767AE00BA673F /* MeasurementUnit.swift in Sources */,
 			);

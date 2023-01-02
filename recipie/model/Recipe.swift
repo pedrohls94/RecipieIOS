@@ -14,22 +14,19 @@ final class Recipe: Identifiable  {
     var name: String?
     var ingredients = [Ingredient]()
     var instructions = [InstructionSet]()
-    
-    var image: Image {
-        return Image("pie")
-    }
+    var image: Image?
     
     init(mo: RecipeMO, ingredients: [Ingredient], instructions: [InstructionSet]) {
         managedObject = mo
         name = mo.name!
         self.ingredients = ingredients
         self.instructions = instructions
-    }
-    
-    init(name: String, ingredients: [Ingredient], instructions: [InstructionSet]) {
-        self.name = name
-        self.ingredients = ingredients
-        self.instructions = instructions
+        
+        if let mo = self.managedObject,
+           let data = FileController.getImageData(from: mo),
+           let uiImage = UIImage(data: data) {
+            image = Image(uiImage: uiImage)
+        }
     }
     
     init() {

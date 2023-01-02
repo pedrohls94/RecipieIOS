@@ -38,11 +38,19 @@ struct EditRecipeView: View {
     var imageView: some View {
         VStack(spacing: 0) {
             horizontalBar
-            viewModel.recipe.image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: .center)
-                .clipped()
+            ZStack(alignment: .bottomTrailing) {
+                ImageHelper.getImageForRecipe(viewModel.recipe)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: .center)
+                    .clipped()
+                Image("camera")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 50, height: 50, alignment: .bottomTrailing)
+                    .clipped()
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 10))
+            }
             horizontalBar
         }
     }
