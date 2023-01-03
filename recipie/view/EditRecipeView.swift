@@ -42,7 +42,7 @@ struct EditRecipeView: View {
         VStack(spacing: 0) {
             horizontalBar
             ZStack(alignment: .bottomTrailing) {
-                ImageHelper.getImageForRecipe(viewModel.recipe)
+                viewModel.recipeImage!
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: .center)

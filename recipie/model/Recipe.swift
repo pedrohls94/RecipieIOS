@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import SwiftUI
 
-final class Recipe: Identifiable  {
+final class Recipe: Identifiable, ObservableObject  {
     var managedObject: RecipeMO?
     var name: String?
     var ingredients = [Ingredient]()
