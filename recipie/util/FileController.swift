@@ -13,14 +13,11 @@ class FileController {
             return nil
         }
         
-        url.appendPathComponent("\(recipe.objectID)")
+        let fileName = recipe.imageLocalPath ?? UUID().uuidString
         
-        do {
-            try image.write(to: url)
-            return url.absoluteString
-        } catch {
-            return nil
-        }
+        url.appendPathComponent(fileName)
+        FileManager.default.createFile(atPath: url.path(), contents: image)
+        return fileName
     }
     
     private static func getRecipeImageDirectoryPath() -> URL? {
@@ -29,19 +26,33 @@ class FileController {
         }
         
         url.appendPathComponent("recipeImages")
+        
+        var isDir:ObjCBool = true
+        if !FileManager.default.fileExists(atPath: url.path(), isDirectory: &isDir) {
+            try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        }
+        
         return url
     }
     
     static func getImageData(from recipe: RecipeMO) -> Data? {
         guard
-            let path = recipe.imageLocalPath,
-            FileManager.default.fileExists(atPath: path),
-            let url = URL(string: path)
+            let documentsUrl = getRecipeImageDirectoryPath(),
+            let fileName = recipe.imageLocalPath
+        else {
+            return nil
+        }
+        
+        let path = documentsUrl.appending(path: fileName).path()
+        
+        guard
+            FileManager.default.fileExists(atPath: path)
         else {
             return nil
         }
         
         do {
+            let url = URL(filePath: path)
             let data = try Data(contentsOf: url)
             return data
         } catch {

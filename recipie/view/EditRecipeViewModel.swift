@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import PhotosUI
 
 class EditRecipeViewModel: ObservableObject, Identifiable {
     @Published var recipe: Recipe
@@ -62,6 +63,14 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         currentSet.instructions.append(instruction)
         
         instructionText = ""
+    }
+    
+    func setRecipeImage(_ item: PhotosPickerItem?) async {
+        if let data = try? await item?.loadTransferable(type: Data.self) {
+            if let uiImage = UIImage(data: data) {
+                recipe.image = uiImage
+            }
+        }
     }
     
     func save() {

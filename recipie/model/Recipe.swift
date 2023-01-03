@@ -14,7 +14,7 @@ final class Recipe: Identifiable  {
     var name: String?
     var ingredients = [Ingredient]()
     var instructions = [InstructionSet]()
-    var image: Image?
+    var image: UIImage?
     
     init(mo: RecipeMO, ingredients: [Ingredient], instructions: [InstructionSet]) {
         managedObject = mo
@@ -25,7 +25,7 @@ final class Recipe: Identifiable  {
         if let mo = self.managedObject,
            let data = FileController.getImageData(from: mo),
            let uiImage = UIImage(data: data) {
-            image = Image(uiImage: uiImage)
+            image = uiImage
         }
     }
     

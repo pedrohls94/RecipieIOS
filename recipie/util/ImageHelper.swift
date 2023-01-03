@@ -10,6 +10,10 @@ import SwiftUI
 
 class ImageHelper {
     static func getImageForRecipe(_ recipe: Recipe) -> Image {
-        return recipe.image ?? Image("pie")
+        if let uiImage = recipe.image {
+            return Image(uiImage: uiImage)
+        } else {
+            return Image("pie")
+        }
     }
 }
