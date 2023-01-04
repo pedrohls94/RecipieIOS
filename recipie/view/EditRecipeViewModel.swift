@@ -7,9 +7,13 @@
 
 import SwiftUI
 import Combine
+import PhotosUI
 
 class EditRecipeViewModel: ObservableObject, Identifiable {
     @Published var recipe: Recipe
+    
+    @Published var recipeImage: Image?
+    private var recipeUIImage: UIImage?
     
     @Published var recipeName = ""
     
@@ -34,6 +38,8 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         if let name = recipe?.name {
             recipeName = name
         }
+        
+        recipeImage = Image(uiImage: self.recipe.image)
         
         if self.recipe.instructions.count < 1 {
             self.recipe.instructions.append(InstructionSet(identifier: 1))
@@ -64,8 +70,25 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         instructionText = ""
     }
     
+    func setRecipeImage(_ item: PhotosPickerItem?) async {
+        if let data = try? await item?.loadTransferable(type: Data.self) {
+            if let uiImage = UIImage(data: data) {
+                recipeUIImage = uiImage
+                
+                DispatchQueue.main.async {
+                    self.recipeImage = Image(uiImage: uiImage)
+                }
+            }
+        }
+    }
+    
     func save() {
         recipe.name = recipeName
+        
+        if let image = recipeUIImage {
+            recipe.image = image
+        }
+        
         recipeController.saveRecipe(recipe)
         shouldDismiss = true
     }

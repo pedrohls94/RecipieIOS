@@ -47,7 +47,7 @@ struct RecipeListView: View {
         NavigationLink(destination: Factory.getEditRecipeView(recipe)) {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 15) {
-                    recipe.image
+                    Image(uiImage: recipe.image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 80)

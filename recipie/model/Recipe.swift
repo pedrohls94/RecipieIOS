@@ -9,30 +9,28 @@ import Foundation
 import CoreData
 import SwiftUI
 
-final class Recipe: Identifiable  {
+final class Recipe: Identifiable, ObservableObject  {
     var managedObject: RecipeMO?
     var name: String?
     var ingredients = [Ingredient]()
     var instructions = [InstructionSet]()
-    
-    var image: Image {
-        return Image("pie")
-    }
+    var image: UIImage
     
     init(mo: RecipeMO, ingredients: [Ingredient], instructions: [InstructionSet]) {
         managedObject = mo
         name = mo.name!
         self.ingredients = ingredients
         self.instructions = instructions
-    }
-    
-    init(name: String, ingredients: [Ingredient], instructions: [InstructionSet]) {
-        self.name = name
-        self.ingredients = ingredients
-        self.instructions = instructions
+        
+        image = ImageHelper.createRandomImageForRecipe()
+        if let mo = self.managedObject,
+           let data = FileController.getImageData(from: mo),
+           let uiImage = UIImage(data: data) {
+            image = uiImage
+        }
     }
     
     init() {
-        
+        image = ImageHelper.createRandomImageForRecipe()
     }
 }

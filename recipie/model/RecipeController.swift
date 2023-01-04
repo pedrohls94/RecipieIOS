@@ -24,6 +24,9 @@ final class RecipeControllerImpl: RecipeController {
         recipe.managedObject!.name = recipe.name
         recipe.managedObject!.ingredients = getIngredientsMOs(recipe: recipe, context: context)
         recipe.managedObject!.instructions = getInstructionSetsMOs(recipe: recipe, context: context)
+        if let imageData = recipe.image.pngData() {
+            recipe.managedObject!.imageLocalPath = FileController.saveImageData(imageData, forRecipe: recipe.managedObject!)
+        }
         
         do {
             try context.save()

@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct EditRecipeView: View {
     @ObservedObject var viewModel: EditRecipeViewModel
     
     @Environment(\.presentationMode) var presentationMode
+    
+    @State private var selectedItem: PhotosPickerItem? = nil
 
     init(_ viewModel: EditRecipeViewModel) {
         self.viewModel = viewModel
@@ -38,11 +41,32 @@ struct EditRecipeView: View {
     var imageView: some View {
         VStack(spacing: 0) {
             horizontalBar
-            viewModel.recipe.image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: .center)
-                .clipped()
+            ZStack(alignment: .bottomTrailing) {
+                viewModel.recipeImage!
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: .center)
+                    .clipped()
+                
+                PhotosPicker(
+                    selection: $selectedItem,
+                    matching: .images,
+                    photoLibrary: .shared()) {
+                        Image("camera")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50, alignment: .bottomTrailing)
+                            .clipped()
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 10))
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 10))
+                    .frame(width: 50, height: 50, alignment: .bottomTrailing)
+                    .onChange(of: selectedItem) { newItem in
+                        Task {
+                            await viewModel.setRecipeImage(newItem)
+                        }
+                    }
+            }
             horizontalBar
         }
     }
