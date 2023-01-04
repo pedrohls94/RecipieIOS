@@ -14,6 +14,7 @@ struct EditRecipeView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var isPresentingAlert: Bool = false
 
     init(_ viewModel: EditRecipeViewModel) {
         self.viewModel = viewModel
@@ -36,6 +37,8 @@ struct EditRecipeView: View {
                 presentationMode.wrappedValue.dismiss()
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: backButton)
     }
     
     var imageView: some View {
@@ -141,6 +144,24 @@ struct EditRecipeView: View {
                 Text("Save")
             }
         }.padding()
+    }
+    
+    var backButton: some View {
+        Button {
+            if viewModel.hasChanges {
+                isPresentingAlert = true
+            } else {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        } label: {
+            Image(systemName: "chevron.left")
+        }
+        .alert("Do you want to discard all changes?", isPresented: $isPresentingAlert, actions: {
+            Button("Yes", role: .destructive) {
+                viewModel.resetForm()
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        })
     }
     
     var verticalBar: some View {

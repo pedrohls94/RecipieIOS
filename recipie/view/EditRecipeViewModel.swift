@@ -15,7 +15,13 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     @Published var recipeImage: Image?
     private var recipeUIImage: UIImage?
     
-    @Published var recipeName = ""
+    @Published var recipeName = "" {
+        didSet {
+            if recipeName != recipe.name {
+                hasChanges = true
+            }
+        }
+    }
     
     @Published var ingredientName = ""
     @Published var ingredientQuantity = ""
@@ -29,21 +35,27 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     
     @Published var shouldDismiss = false
     
+    var hasChanges = false
     private var recipeController: RecipeController
     
     init(_ recipeController: RecipeController, recipe: Recipe? = nil) {
         self.recipeController = recipeController
         
         self.recipe = recipe ?? Recipe()
-        if let name = recipe?.name {
-            recipeName = name
-        }
-        
-        recipeImage = Image(uiImage: self.recipe.image)
+        resetForm()
         
         if self.recipe.instructions.count < 1 {
             self.recipe.instructions.append(InstructionSet(identifier: 1))
         }
+    }
+    
+    func resetForm() {
+        if let name = recipe.name {
+            recipeName = name
+        }
+        
+        recipeImage = Image(uiImage: recipe.image)
+        hasChanges = false
     }
     
     func addIngredient() {
@@ -51,6 +63,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
             let unit = MeasurementUnit(rawValue: ingredientMeasurementUnit) ?? .units
             let newIngredient = Ingredient(name: ingredientName, measurementUnit: unit, quantity: quantity)
             recipe.ingredients.append(newIngredient)
+            hasChanges = true
         }
         
         resetIngredientFields()
@@ -66,6 +79,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         let currentSet = recipe.instructions.last!
         let instruction = Instruction(order: currentSet.instructions.count, text: instructionText)
         currentSet.instructions.append(instruction)
+        hasChanges = true
         
         instructionText = ""
     }
@@ -77,6 +91,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
                 
                 DispatchQueue.main.async {
                     self.recipeImage = Image(uiImage: uiImage)
+                    self.hasChanges = true
                 }
             }
         }
