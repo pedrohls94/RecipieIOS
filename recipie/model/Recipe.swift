@@ -14,7 +14,7 @@ final class Recipe: Identifiable, ObservableObject  {
     var name: String?
     var ingredients = [Ingredient]()
     var instructions = [InstructionSet]()
-    var image: UIImage?
+    var image: UIImage
     
     init(mo: RecipeMO, ingredients: [Ingredient], instructions: [InstructionSet]) {
         managedObject = mo
@@ -22,6 +22,7 @@ final class Recipe: Identifiable, ObservableObject  {
         self.ingredients = ingredients
         self.instructions = instructions
         
+        image = ImageHelper.createRandomImageForRecipe()
         if let mo = self.managedObject,
            let data = FileController.getImageData(from: mo),
            let uiImage = UIImage(data: data) {
@@ -30,6 +31,6 @@ final class Recipe: Identifiable, ObservableObject  {
     }
     
     init() {
-        
+        image = ImageHelper.createRandomImageForRecipe()
     }
 }

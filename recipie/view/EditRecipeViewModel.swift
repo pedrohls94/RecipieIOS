@@ -13,6 +13,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     @Published var recipe: Recipe
     
     @Published var recipeImage: Image?
+    private var recipeUIImage: UIImage?
     
     @Published var recipeName = ""
     
@@ -38,7 +39,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
             recipeName = name
         }
         
-        setRecipeImage()
+        recipeImage = Image(uiImage: self.recipe.image)
         
         if self.recipe.instructions.count < 1 {
             self.recipe.instructions.append(InstructionSet(identifier: 1))
@@ -72,20 +73,22 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
     func setRecipeImage(_ item: PhotosPickerItem?) async {
         if let data = try? await item?.loadTransferable(type: Data.self) {
             if let uiImage = UIImage(data: data) {
-                recipe.image = uiImage
+                recipeUIImage = uiImage
+                
                 DispatchQueue.main.async {
-                    self.setRecipeImage()
+                    self.recipeImage = Image(uiImage: uiImage)
                 }
             }
         }
     }
     
-    private func setRecipeImage() {
-        recipeImage = ImageHelper.getImageForRecipe(self.recipe)
-    }
-    
     func save() {
         recipe.name = recipeName
+        
+        if let image = recipeUIImage {
+            recipe.image = image
+        }
+        
         recipeController.saveRecipe(recipe)
         shouldDismiss = true
     }
