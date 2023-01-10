@@ -89,7 +89,7 @@ struct EditRecipeView: View {
             Text("Ingredients")
                 .modifier(SectionTitle())
             
-            ForEach(viewModel.recipe.ingredients) { ingredient in
+            ForEach(viewModel.ingredients) { ingredient in
                 Text("- \(String(format: "%g", ingredient.quantity)) \(ingredient.measurementUnit.toString()) \(ingredient.name)")
                     .foregroundColor(Color.text)
             }
@@ -122,7 +122,7 @@ struct EditRecipeView: View {
             Text("Instructions")
                 .modifier(SectionTitle())
             
-            ForEach(viewModel.recipe.instructions) { instructionSet in
+            ForEach(viewModel.instructions) { instructionSet in
                 ForEach(instructionSet.instructions) { instruction in
                     Text("- \(instruction.text)")
                         .foregroundColor(Color.text)

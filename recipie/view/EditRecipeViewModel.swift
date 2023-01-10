@@ -23,6 +23,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         }
     }
     
+    @Published var ingredients = [Ingredient]()
     @Published var ingredientName = ""
     @Published var ingredientQuantity = ""
     @Published var ingredientMeasurementUnit: Int = 0 {
@@ -31,6 +32,7 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         }
     }
     
+    @Published var instructions = [InstructionSet]()
     @Published var instructionText = ""
     
     @Published var shouldDismiss = false
@@ -43,10 +45,6 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         
         self.recipe = recipe ?? Recipe()
         resetForm()
-        
-        if self.recipe.instructions.count < 1 {
-            self.recipe.instructions.append(InstructionSet(identifier: 1))
-        }
     }
     
     func resetForm() {
@@ -55,6 +53,14 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         }
         
         recipeImage = Image(uiImage: recipe.image)
+        
+        ingredients = recipe.ingredients
+        instructions = recipe.instructions
+        if instructions.count < 1 {
+            instructions.append(InstructionSet(identifier: 1))
+        }
+        
+        resetIngredientFields()
         hasChanges = false
     }
     
@@ -62,25 +68,29 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         if let quantity = Double(ingredientQuantity) {
             let unit = MeasurementUnit(rawValue: ingredientMeasurementUnit) ?? .units
             let newIngredient = Ingredient(name: ingredientName, measurementUnit: unit, quantity: quantity)
-            recipe.ingredients.append(newIngredient)
+            ingredients.append(newIngredient)
             hasChanges = true
         }
         
         resetIngredientFields()
     }
     
-    func resetIngredientFields() {
+    private func resetIngredientFields() {
         ingredientName = ""
         ingredientQuantity = ""
         ingredientMeasurementUnit = 0
     }
     
     func addInstruction() {
-        let currentSet = recipe.instructions.last!
+        let currentSet = instructions.last!
         let instruction = Instruction(order: currentSet.instructions.count, text: instructionText)
         currentSet.instructions.append(instruction)
         hasChanges = true
         
+        resetInstructionFields()
+    }
+    
+    private func resetInstructionFields() {
         instructionText = ""
     }
     
@@ -103,6 +113,9 @@ class EditRecipeViewModel: ObservableObject, Identifiable {
         if let image = recipeUIImage {
             recipe.image = image
         }
+        
+        recipe.ingredients = ingredients
+        recipe.instructions = instructions
         
         recipeController.saveRecipe(recipe)
         shouldDismiss = true
